@@ -1,0 +1,196 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
+
+public class RealEstate extends JFrame implements ActionListener {
+	private JPanel panLog = new JPanel();
+	private JPanel panOperations = new JPanel();
+	private JPanel panNavigation = new JPanel();
+	private JPanel panContent = new JPanel();
+	
+	private JLabel lblLog = new JLabel("Message: Ready");
+	
+	private JButton btnAdd = new JButton("Add");
+	private JButton btnRemove = new JButton("Remove");
+	private JButton btnReset = new JButton("Reset");
+	private JButton btnFind = new JButton("Find");
+	
+	private JButton btnNext = new JButton("Next");
+	private JButton btnPrev = new JButton("Previous");
+	private JButton btnLoad = new JButton("Load");	
+	private JButton btnSave = new JButton("Save");
+	
+	private JLabel lblLotNo = new JLabel("Lot Number:");
+	private JLabel lblFName = new JLabel("First Name:");
+	private JLabel lblLName = new JLabel("Last Name:");
+	private JLabel lblPrice = new JLabel("Price:");
+	private JLabel lblSqrF = new JLabel("Square Feet:");
+	private JLabel lblBedNo = new JLabel("No. of Bedrooms:");
+	
+	private JTextField txtLotNo = new JTextField();
+	private JTextField txtFName = new JTextField();
+	private JTextField txtLName = new JTextField();
+	private JTextField txtPrice = new JTextField();
+	private JTextField txtSqrF = new JTextField();
+	private JTextField txtBedNo = new JTextField();
+		
+	private void initFrame() {
+		//text fields
+		txtLotNo.setEditable(false);
+		txtFName.setEditable(false);
+		txtLName.setEditable(false);
+		txtPrice.setEditable(false);
+		txtSqrF.setEditable(false);
+		txtBedNo.setEditable(false);
+		
+		// panLog
+		panLog.setLayout(new GridLayout(1, 1));
+		panLog.add(lblLog);
+		
+		//panOperations
+		panOperations.setLayout(new GridLayout(2, 2, 5, 3));
+		panOperations.add(btnAdd);
+		panOperations.add(btnRemove);
+		panOperations.add(btnReset);
+		panOperations.add(btnFind);
+		
+		//panNavigation
+		panNavigation.setLayout(new GridLayout(2, 2, 5, 3));
+		panNavigation.add(btnSave);
+		panNavigation.add(btnLoad);
+		panNavigation.add(btnPrev);
+		panNavigation.add(btnNext);
+		
+		//alignments
+		lblLotNo.setHorizontalAlignment(JLabel.RIGHT);
+		lblFName.setHorizontalAlignment(JLabel.RIGHT);
+		lblLName.setHorizontalAlignment(JLabel.RIGHT);
+		lblPrice.setHorizontalAlignment(JLabel.RIGHT);
+		lblSqrF.setHorizontalAlignment(JLabel.RIGHT);
+		lblBedNo.setHorizontalAlignment(JLabel.RIGHT);
+		
+		//panContent
+		panContent.setLayout(new GridLayout(6, 2, 10, 5));
+		panContent.add(lblLotNo);
+		panContent.add(txtLotNo);
+		panContent.add(lblFName);
+		panContent.add(txtFName);
+		panContent.add(lblLName);
+		panContent.add(txtLName);
+		panContent.add(lblPrice);
+		panContent.add(txtPrice);
+		panContent.add(lblSqrF);
+		panContent.add(txtSqrF);
+		panContent.add(lblBedNo);
+		panContent.add(txtBedNo);
+		
+		//registring action listeners
+		btnAdd.addActionListener(this);
+		btnRemove.addActionListener(this);
+		btnReset.addActionListener(this);
+		btnNext.addActionListener(this);
+		btnPrev.addActionListener(this);
+		
+		//add to Frame
+		add(panNavigation);
+		add(panContent);
+		add(panOperations);
+		add(panLog);
+	}
+	
+	public RealEstate() {
+		initFrame();
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		setTitle("Real Estate Program");
+		setSize(300, 420);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	
+	public static void main (String[] args) {
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch(Exception e){
+			System.out.println("No Look & Feel Loaded!...");
+			System.out.println("Exception: " + e.getMessage());
+		}
+		new RealEstate();
+	}
+	
+	// ### Event Handling
+	private void writeLog(String txt) {
+		lblLog.setText(txt);
+	}
+	
+	private void clearTextFields() {
+		txtLotNo.setText(null);
+		txtFName.setText(null);
+		txtLName.setText(null);
+		txtPrice.setText(null);
+		txtSqrF.setText(null);
+		txtBedNo.setText(null);
+	}
+	
+	private void switchEditMode(boolean flag) {
+		btnSave.setEnabled(!flag);
+		btnLoad.setEnabled(!flag);
+		btnNext.setEnabled(!flag);
+		btnPrev.setEnabled(!flag);
+		btnFind.setEnabled(!flag);
+		
+		txtLotNo.setEditable(flag);
+		txtFName.setEditable(flag);
+		txtLName.setEditable(flag);
+		txtPrice.setEditable(flag);
+		txtSqrF.setEditable(flag);
+		txtBedNo.setEditable(flag);
+		txtLotNo.requestFocus();
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		JButton src = (JButton)e.getSource();
+		switch(src.getText()) {
+			case "Add":
+				clearTextFields();
+				writeLog("Message: Adding new data");
+				switchEditMode(true);
+				btnAdd.setText("OK");
+				btnRemove.setText("Cancel");
+				btnReset.setText("Clear");
+				break;
+			case "Remove":
+				break;
+			case "OK":
+				writeLog("Message: New data added");
+				switchEditMode(false);
+				btnAdd.setText("Add");
+				btnRemove.setText("Remove");
+				btnReset.setText("Reset");
+				break;
+			case "Cancel":
+				clearTextFields();
+				writeLog("Message: Adding cancelled");
+				switchEditMode(false);
+				btnAdd.setText("Add");
+				btnRemove.setText("Remove");
+				btnReset.setText("Reset");
+				break;
+			case "Clear":
+				clearTextFields();
+				writeLog("Message: Text-fields cleared");
+				break;
+			case "Reset":
+				writeLog("Message: List emptied");
+				break;
+			case "Previous":
+				writeLog("Message: Previous item displayed");
+				break;
+			case "Next":
+				writeLog("Message: Next item displayed");
+				break;
+		}
+	}
+}
