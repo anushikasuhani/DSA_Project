@@ -1,8 +1,7 @@
-/*
-	RealEstate Class
-	handles all the operations related to lists, UI design, event-handling for the RealEstate program
-	
-	Created by : Hashan Chandika with CodeRipperZ
+/* RealEstate Class
+ *
+ * Created By: Hashan Chandika with CodeRipperZ
+ *
 */
 
 import java.awt.*;
@@ -11,25 +10,35 @@ import javax.swing.*;
 import java.util.*;
 
 public class RealEstate extends JFrame implements ActionListener {
-	// JFrame's layout is 'BoxLayout'
-	// each group of controls included in following panels
-	private JPanel panLog = new JPanel();		// this panel contains 'lblLog', which works as the program's log
-	private JPanel panOperations = new JPanel();	// this panel contains controls related to list operations
-	private JPanel panNavigation = new JPanel();	// this panel contains controls which navigates through the list
-	private JPanel panContent = new JPanel();	// this panel contains user's data entry controls
+	/* All the controls in the JFrame are added to its 'ContentPane', which is layed
+	 * out according to 'BoxLayout'. Controls are grouped in JPanels according to
+	 * their behaviour. JPanels obtain GridLayout.
+	*/
 	
-	private JLabel lblLog = new JLabel("Message: Ready");	// use to write log messages
+	// panLog contains lblLog, which is a JLabel that program writes its messages
+	private JPanel panLog = new JPanel();
+	// panOperations contains controls related to List operations.(Add, Remove, Reset etc)
+	private JPanel panOperations = new JPanel();
+	// panNavigation contains controls which helps the user to navigate through the list.(Next, Prev)
+	private JPanel panNavigation = new JPanel();
+	// panContent contains data-entry controls(labels and textfields)
+	private JPanel panContent = new JPanel();
 	
+	// program writes the messages
+	private JLabel lblLog = new JLabel("Message: Ready");
+	
+	// buttons for operating on the list of 'ListHouse' objects
 	private JButton btnAdd = new JButton("Add");
 	private JButton btnRemove = new JButton("Remove");
 	private JButton btnReset = new JButton("Reset");
 	private JButton btnFind = new JButton("Find");
 	
-	private JButton btnNext = new JButton("Next");
-	private JButton btnPrev = new JButton("Previous");
-	private JButton btnLoad = new JButton("Load");	
-	private JButton btnSave = new JButton("Save");
+	private JButton btnNext = new JButton("Next");		// to display Next element in the list
+	private JButton btnPrev = new JButton("Previous");	// to display Previous element in the list
+	private JButton btnLoad = new JButton("Load");		// to load data to the list from a file
+	private JButton btnSave = new JButton("Save");		// to save data in the list to a file
 	
+	// labels
 	private JLabel lblLotNo = new JLabel("Lot Number:");
 	private JLabel lblFName = new JLabel("First Name:");
 	private JLabel lblLName = new JLabel("Last Name:");
@@ -37,6 +46,7 @@ public class RealEstate extends JFrame implements ActionListener {
 	private JLabel lblSqrF = new JLabel("Square Feet:");
 	private JLabel lblBedNo = new JLabel("No. of Bedrooms:");
 	
+	// textfields
 	private JTextField txtLotNo = new JTextField();
 	private JTextField txtFName = new JTextField();
 	private JTextField txtLName = new JTextField();
@@ -45,7 +55,7 @@ public class RealEstate extends JFrame implements ActionListener {
 	private JTextField txtBedNo = new JTextField();
 		
 	private void initFrame() {
-		//text fields
+		// disable editing textfields
 		txtLotNo.setEditable(false);
 		txtFName.setEditable(false);
 		txtLName.setEditable(false);
@@ -53,25 +63,25 @@ public class RealEstate extends JFrame implements ActionListener {
 		txtSqrF.setEditable(false);
 		txtBedNo.setEditable(false);
 		
-		// panLog
+		// set panLog layout & add its controls
 		panLog.setLayout(new GridLayout(1, 1));
 		panLog.add(lblLog);
 		
-		//panOperations
+		// set panOperations layout & add its controls
 		panOperations.setLayout(new GridLayout(2, 2, 5, 3));
 		panOperations.add(btnAdd);
 		panOperations.add(btnRemove);
 		panOperations.add(btnReset);
 		panOperations.add(btnFind);
 		
-		//panNavigation
+		// set panNavigation layout & add its controls
 		panNavigation.setLayout(new GridLayout(2, 2, 5, 3));
 		panNavigation.add(btnSave);
 		panNavigation.add(btnLoad);
 		panNavigation.add(btnPrev);
 		panNavigation.add(btnNext);
 		
-		//alignments
+		//	align label text to the right
 		lblLotNo.setHorizontalAlignment(JLabel.RIGHT);
 		lblFName.setHorizontalAlignment(JLabel.RIGHT);
 		lblLName.setHorizontalAlignment(JLabel.RIGHT);
@@ -79,7 +89,7 @@ public class RealEstate extends JFrame implements ActionListener {
 		lblSqrF.setHorizontalAlignment(JLabel.RIGHT);
 		lblBedNo.setHorizontalAlignment(JLabel.RIGHT);
 		
-		//panContent
+		// set panContent layout & add its controls
 		panContent.setLayout(new GridLayout(6, 2, 10, 5));
 		panContent.add(lblLotNo);
 		panContent.add(txtLotNo);
@@ -94,14 +104,14 @@ public class RealEstate extends JFrame implements ActionListener {
 		panContent.add(lblBedNo);
 		panContent.add(txtBedNo);
 		
-		//registring action listeners
+		// registring action listeners for the buttons
 		btnAdd.addActionListener(this);
 		btnRemove.addActionListener(this);
 		btnReset.addActionListener(this);
 		btnNext.addActionListener(this);
 		btnPrev.addActionListener(this);
 		
-		//add to Frame
+		// add panels to the JFrame
 		add(panNavigation);
 		add(panContent);
 		add(panOperations);
@@ -109,17 +119,18 @@ public class RealEstate extends JFrame implements ActionListener {
 	}
 	
 	public RealEstate() {
-		initFrame();
-		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		setTitle("Real Estate Program");
-		setSize(300, 420);
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setVisible(true);
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));	// set frame layout
+		initFrame();						// inialize frame contents
+		setTitle("Real Estate Program");	// set frame title
+		setSize(300, 420);					// set frame size
+		setResizable(false);				// disable resizing the frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);									// set default exit behaviour
+		setLocationRelativeTo(null);													// set frame location
+		setVisible(true);					// display frame
 	}
 	
 	public static void main (String[] args) {
+		// set look and feel
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch(Exception e){
@@ -130,10 +141,13 @@ public class RealEstate extends JFrame implements ActionListener {
 	}
 	
 	// ### Event Handling
+	
+	// write log messages
 	private void writeLog(String txt) {
 		lblLog.setText(txt);
 	}
 	
+	// clear all textfields
 	private void clearTextFields() {
 		txtLotNo.setText(null);
 		txtFName.setText(null);
@@ -143,6 +157,7 @@ public class RealEstate extends JFrame implements ActionListener {
 		txtBedNo.setText(null);
 	}
 	
+	// toggle between editmode
 	private void switchEditMode(boolean flag) {
 		btnSave.setEnabled(!flag);
 		btnLoad.setEnabled(!flag);
@@ -159,6 +174,7 @@ public class RealEstate extends JFrame implements ActionListener {
 		txtLotNo.requestFocus();
 	}
 	
+	// event handler for buttons
 	public void actionPerformed(ActionEvent e) {
 		JButton src = (JButton)e.getSource();
 		switch(src.getText()) {
