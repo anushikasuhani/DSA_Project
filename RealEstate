@@ -1,15 +1,24 @@
+/*
+	RealEstate Class
+	handles all the operations related to lists, UI design, event-handling for the RealEstate program
+	
+	Created by : Hashan Chandika with CodeRipperZ
+*/
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
 public class RealEstate extends JFrame implements ActionListener {
-	private JPanel panLog = new JPanel();
-	private JPanel panOperations = new JPanel();
-	private JPanel panNavigation = new JPanel();
-	private JPanel panContent = new JPanel();
+	// JFrame's layout is 'BoxLayout'
+	// each group of controls included in following panels
+	private JPanel panLog = new JPanel();		// this panel contains 'lblLog', which works as the program's log
+	private JPanel panOperations = new JPanel();	// this panel contains controls related to list operations
+	private JPanel panNavigation = new JPanel();	// this panel contains controls which navigates through the list
+	private JPanel panContent = new JPanel();	// this panel contains user's data entry controls
 	
-	private JLabel lblLog = new JLabel("Message: Ready");
+	private JLabel lblLog = new JLabel("Message: Ready");	// use to write log messages
 	
 	private JButton btnAdd = new JButton("Add");
 	private JButton btnRemove = new JButton("Remove");
