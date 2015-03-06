@@ -11,7 +11,7 @@ import java.util.*;
 
 public class RealEstate extends JFrame implements ActionListener {
 	/* All the controls in the JFrame are added to its 'ContentPane', which is layed
-	 * out according to 'BoxLayout'. Controls are grouped in JPanels according to
+	 * out according to 'BoxLayout'. Controls are grouped in JPanels considering
 	 * their behaviour. JPanels obtain GridLayout.
 	*/
 	
