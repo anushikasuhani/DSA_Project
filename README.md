@@ -4,7 +4,7 @@ Real Estate Program ReadMe
 
 Adding a New Real Estate
 
-1. Click 'Add' button
+1. Click 'Add'
 2. Enter your real estate data
 3. Click 'OK'
 
