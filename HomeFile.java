@@ -9,16 +9,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
-//import java.io.FileOutputStream;
-//import java.io.ObjectOutputStream;
+
 
 
 public class HouseFile 
 {
 		
 	public File file;
-	String path = "";
-    boolean bool = false;
+        boolean bool = false;
 
 	//Class Constructor to create text file
 	public HouseFile() throws IOException
@@ -37,7 +35,7 @@ public class HouseFile
 	
 	/*public static void main(String[] args) throws IOException 
 	{
-	//testing main	
+	//testing main function	
 		
 		HouseFile h = new HouseFile();
 		//h.saveHouseDataFile("ABC");
@@ -45,22 +43,16 @@ public class HouseFile
 	}*/
 	public boolean saveHouseDataFile(String data)
 	{
-		//FileOutputStream tfileOut;//create fileoutputstream
+		
 		
 		try 
 		{
-	        /*tfileOut = new FileOutputStream(path);
-			 ObjectOutputStream tobjout = new ObjectOutputStream(tfileOut);
-			 tobjout.writeObject(data);
-			 tobjout.writeObject("/n");
-			 tobjout.close();
-			 tfileOut.close();*/
-			//true = append file
+	       
     		FileWriter fdata = new FileWriter(file.getName(),true);
-    	    BufferedWriter bufferWritter = new BufferedWriter(fdata);
-    	    bufferWritter.write(data);
-    	    bufferWritter.write("\n");
-    	    bufferWritter.close();
+    	        BufferedWriter bufferWritter = new BufferedWriter(fdata);
+    	        bufferWritter.write(data);//add new record to the text file
+    	        bufferWritter.write("\n");//add new line after each record
+    	        bufferWritter.close();
  
 	        
 			
