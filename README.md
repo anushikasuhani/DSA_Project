@@ -1,14 +1,11 @@
 # CodeRipperZ
 #
-# Group Members
-# 1. Hashan Chandika
-# 2. Jithma Yasiru
-# 3. Chethaka Gunawardana
-# 4. Sanduni Perera
-# 5. Anushika Suhani
-#
-
-
+Group Members
+  1. Hashan Chandika
+  2. Jithma Yasiru
+  3. Chethaka Gunawardana
+  4. Sanduni Perera
+  5. Anushika Suhani
 
 # --------------------------------------------
 # Real Estate Program ReadMe
