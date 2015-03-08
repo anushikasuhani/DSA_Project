@@ -14,7 +14,8 @@ public class RealEstate extends JFrame implements ActionListener {
 	 * out according to 'BoxLayout'. Controls are grouped in JPanels considering
 	 * their behaviour. JPanels obtain GridLayout.
 	*/
-	
+	// create House Class Object
+	private House housedata;
 	// panLog contains lblLog, which is a JLabel that program writes its messages
 	private JPanel panLog = new JPanel();
 	// panOperations contains controls related to List operations.(Add, Remove, Reset etc)
