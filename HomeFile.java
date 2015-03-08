@@ -1,7 +1,7 @@
 /*
  * HouseFile Created by W.S.N.Perera
  */
-package myclass;//change the package name
+//package myclass;//change the package name
 
 
 import java.io.File;
