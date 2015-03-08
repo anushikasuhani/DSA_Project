@@ -218,4 +218,9 @@ public class RealEstate extends JFrame implements ActionListener {
 				break;
 		}
 	}
+	//Call to home file method sendNewHouseToHouseFile by passing new Housedata object
+	private void sendNewHouseToHouseFile() throws IOException
+	{
+		new HouseFile().saveHouseDataFile(housedata);
+	}
 }
